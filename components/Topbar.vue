@@ -1,81 +1,136 @@
 <script setup lang="ts">
-import { darkMode } from "../composable";
-import { dark, light } from "../pictures";
 import { scrollPage } from "~/utils/functions";
+
+const { dark } = useQuasar();
+const logoText = ref("MY");
+const name = "Mücahit";
+const surname = "Yaman";
+const shortText = "MY";
+let animationTimeouts: number[] = [];
+
+const animateText = () => {
+  animationTimeouts.forEach(clearTimeout);
+  animationTimeouts = [];
+
+  for (let i = 1; i <= (name+surname).length; i++) {
+    const timeout = setTimeout(() => {
+      logoText.value = name.slice(0, i) + " " + surname.slice(0, i);
+    }, i * 20);
+    animationTimeouts.push(timeout as unknown as number);
+  }
+};
+
+
+const resetText = () => {
+  animationTimeouts.forEach(clearTimeout);
+  logoText.value = shortText;
+};
+
 </script>
-
 <template>
-  <div class="header">
-    <div :class="darkMode ? 'topbar darkMode' : 'topbar'">
-      <div class="logo">
-        <a href="/">
-          <img
-            src="https://media.startv.com.tr/star-tv//images/yal.jpg"
-            alt="Example Image"
-            class="rounded-image"
-          />
-        </a>
-      </div>
-      <div :class="darkMode ? 'buttons darkMode' : 'buttons'">
-        <input
-          type="button"
-          value="ANASAYFA"
+  <div class="topbar" :class="{ 'dark-mode': dark.isActive }">
+    <div class="logo">
+        <!-- <img
+          src="https://media.startv.com.tr/star-tv//images/yal.jpg"
+          alt="Example Image"
+          class="rounded-image"
+        /> -->
+        <div
+          class="logo-text"
+          :class="{ 'dark-mode': dark.isActive }"
+          @mouseover="animateText"
+          @mouseleave="resetText"
           @click="scrollPage('section-1')"
-        />
-        <input
-          type="button"
-          value="HAKKIMDA"
-          @click="scrollPage('section-2')"
-        />
-        <input
-          type="button"
-          value="PORJELER"
-          @click="scrollPage('section-3')"
-        />
-        <input
-          type="button"
-          value="İLETİŞİM"
-          @click="scrollPage('section-4')"
-        />
-      </div>
+        >
+          {{ logoText }}
+        </div>
+    </div>
+    <div class="buttons" :class="{ 'dark-mode': dark.isActive }">
+      <QBtn
+        class="topbar-button"
+        v-for="(section, index) in ['ANA SAYFA', 'HAKKIMDA', 'PROJELER', 'İLETİŞİM']"
+        :key="index"
+        flat
+        @click="scrollPage('section-' + (index + 1))"
+      >
+        {{ section }}
+      </QBtn>
 
-      <div class="mode-button">
-        <input
-          type="image"
-          :src="darkMode ? light : dark"
-          @click="darkMode = !darkMode"
-        />
-      </div>
+      <QBtn
+        class="mode-icon"
+        :icon="dark.isActive ? 'light_mode' : 'dark_mode'"
+        round
+        flat
+        @click="dark.toggle()"
+      />
     </div>
   </div>
 </template>
 
 <style lang="postcss" scoped>
-.header {
-  height: 20%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
 .topbar {
-  background-color: rgb(233, 233, 233);
+  width: auto;
   height: 90px;
-  width: 100%;
+  left: 50px;
+  right: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0px 50px;
+  position: fixed;
+  top: 50px;
   border-radius: 50px;
+  transition: background-color 0.3s ease;
+  background-color: rgb(225, 225, 225);
+  color: rgb(80, 80, 80);
+
+
+  &.dark-mode {
+    background-color: #2e2e2e;
+  }
+
+  @media (max-width: 600px) {
+    left: 20px;
+    right: 20px;
+    top: 20px;
+    height: 60px;
+  }
 }
 
 .logo {
-  flex: 1;
-  justify-content: left;
-  padding-left: 100px;
+  padding-left: 5%;
+}
+
+.logo-text {
+  font-size: 32px;
+  font-weight: bold;
+  color: rgb(80, 80, 80);
+  transition: color 0.3s ease;
+  user-select: none;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+
+  &.dark-mode {
+    color: rgb(190, 190, 190);
+  }
+
+  &:hover {
+    cursor: pointer;
+    border-radius: 50px;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 }
 
 .buttons {
@@ -83,71 +138,43 @@ import { scrollPage } from "~/utils/functions";
   justify-content: right;
   padding-right: 20px;
   height: 100%;
-}
-
-.mode-button {
-  display: flex;
-  justify-content: right;
   align-items: center;
-  padding-right: 40px;
-  height: 100%;
+  color: rgb(80, 80, 80);
 
-  input {
-    width: 20px;
-    height: 20px;
+  &.dark-mode {
+    color: rgb(190, 190, 190);
+  }
 
-    &:hover {
-      cursor: pointer;
-    }
+  @media (max-width: 600px) {
   }
 }
 
-.buttons input {
-  width: 150px;
+.topbar-button {
+  width: 120px;
   height: 100%;
   border: none;
-  background-color: rgb(233, 233, 233);
   font-size: 14px;
   font-weight: bold;
+  background: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
 
-  &:focus {
-    outline: none;
-  }
-
-  &:hover {
-    background-color: rgb(221, 221, 221);
-  }
-
-  &:active {
-    background-color: rgb(233, 233, 233);
+  @media (max-width: 600px) {
+    display: none;
   }
 }
 
 .rounded-image {
+  border-radius: 50%;
   width: 70px;
   height: 70px;
-  border-radius: 50%;
   object-fit: cover;
 }
 
-.darkMode {
-  background-color: rgb(75, 75, 75);
-
-  .buttons input {
-    background-color: rgb(75, 75, 75);
-    color: rgb(220, 220, 220);
-
-    &:hover {
-      background-color: rgb(85, 85, 85);
-    }
-
-    &:active {
-      background-color: rgb(75, 75, 75);
-    }
-
-    &:focus {
-      background-color: rgb(75, 75, 75);
-    }
-  }
+.mode-icon {
+  height: 50px;
+  width: 50px;
+  margin-left: 10px;
+  transition: color 0.3s ease;
 }
 </style>

@@ -1,49 +1,60 @@
 <script setup lang="ts">
 import Footer from "~/components/Footer.vue";
+
+const { dark } = useQuasar();
 </script>
 
 <template>
-  <div class="contact" id="section-4">
-    <div class="title">Contact</div>
-    <div class="contact-container">
-      <div class="contact-form">
-        <form>
-          <h2>Send me a message!</h2>
-          <div class="form-group">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Message"
-              required
-            ></textarea>
-          </div>
-          <button type="submit">Submit</button>
+  <div class="contact" :class="{ 'dark-mode': dark.isActive }" id="section-4">
+    <div class="title" :class="{ 'dark-mode': dark.isActive }">İletişim</div>
+    <div class="contact-container" :class="{ 'dark-mode': dark.isActive }">
+      <div class="contact-form" :class="{ 'dark-mode': dark.isActive }">
+        <form action="https://formspree.io/f/xqkqgjwq" method="POST" class="form">
+          <div class="form-title" :class="{ 'dark-mode': dark.isActive }">İletişime Geç!</div>
+          <QInput
+            class="pb-3"
+            model-value=""
+            type="text"
+            id="name"
+            name="name"
+            placeholder="İsim"
+            required
+            
+            outlined
+            dense
+          />
+          <QInput
+            class="pb-3"
+            model-value=""
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required
+            outlined
+            dense
+          />
+          <QInput
+            class="pb-3"
+            model-value=""
+            type="textarea"
+            maxlength="100"
+            id="subject"
+            name="subject"
+            placeholder="Konu"
+            required
+            outlined
+            dense
+          />
+          <QBtn type="submit" color="primary" label="Gönder" class="form-button"/>
         </form>
       </div>
     </div>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 .contact {
   display: flex;
   flex-direction: column;
@@ -51,75 +62,140 @@ import Footer from "~/components/Footer.vue";
   align-items: center;
   width: 100%;
   height: 100vh;
+  color: black;
+
+  &.dark-mode {
+    background-color: #212121;
+    color: white;
+  }
 }
 
 .title {
-  font-size: 50px;
+  font-size: 36px;
   padding-top: 20vh;
+  color: rgb(80, 80, 80);
+  font-family:
+  system-ui,
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  Oxygen,
+  Ubuntu,
+  Cantarell,
+  "Open Sans",
+  "Helvetica Neue",
+  Arial,
+  sans-serif;
+
+  &.dark-mode {
+    color: rgb(210, 210, 210);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 20px;
+  }
 }
 
 .contact-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  color: black;
   height: 100vh;
+  width: 80%;
+
+ 
+  &.dark-mode {
+    background-color: #212121;
+    color: white;
+    min-width: 80%;
+  }
 }
 
 .contact-form {
-  border: 2px solid black;
   border-radius: 30px;
   padding: 20px;
-  width: 25%;
-  margin: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin-top: 20px;
   margin-bottom: 20px;
+  background-color: rgb(233, 233, 233);
+  color: black;
+ 
+  &.dark-mode {
+    background-color: #383838;
+    color: white;
+  }
+
+  @media (max-width: 600px) {
+  }
 }
 
-form {
+
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.form-title {
+  padding-bottom: 10px;
+  font-size: 24px;
+  text-align: center;
+  color: rgb(80, 80, 80);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+
+  &.dark-mode {
+    color: rgb(210, 210, 210);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 }
 
 label {
-  font-weight: bold;
   margin-bottom: 5px;
-}
-
-input {
-  width: 250px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-textarea {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  max-width: 350px;
-  max-height: 160px;
-  min-width: 250px;
-  min-height: 100px;
-}
-
-button {
-  background-color: black;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
   font-size: 16px;
-  cursor: pointer;
-  width: 250px;
+  color: rgb(80, 80, 80);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+
+  &.dark-mode {
+    color: rgb(210, 210, 210);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+}
+
+.footer {
+  height: 35vh;
+
+  @media (max-width: 600px) {
+    height: 20vh;
+  }
 }
 </style>

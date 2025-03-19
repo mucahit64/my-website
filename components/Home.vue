@@ -1,29 +1,54 @@
+
 <script setup lang="ts">
-import { darkMode } from "../composable";
+import profilePhoto from "../pictures/profile.jpeg";
+
+const { dark } = useQuasar();
+
 </script>
 
 <template>
-  <div :class="darkMode ? 'home darkMode' : 'home'" id="section-1">
-    <div :class="darkMode ? 'image darkMode' : 'image'">
-      <img
+  <div class="home" :class="{ 'dark-mode': dark.isActive }" id="section-1">
+    <div class="image" :class="{ 'dark-mode': dark.isActive }">
+      <!-- <img
         src="https://media.startv.com.tr/star-tv//images/yal.jpg"
+        alt="Example Image"
+        class="rounded-image"
+      /> -->
+      <img
+        :src="profilePhoto"
         alt="Example Image"
         class="rounded-image"
       />
     </div>
-    <div :class="darkMode ? 'text darkMode' : 'text'">
-      <div class="title">Mücahit Yaman</div>
-      <div class="subtitle">Software Developer</div>
-      <div class="description">
-        I am a software developer who loves to build and design. I am currently
-        working at
+
+    <div 
+      class="text" 
+      :class="{ 'dark-mode': dark.isActive }">
+
+      <div 
+        class="title"
+        :class="{ 'dark-mode': dark.isActive }">
+          Selam, ben <span class="name">Mücahit</span>
+      </div>
+      
+      <div
+        class="subtitle"
+        :class="{ 'dark-mode': dark.isActive }">
+          Software Developer
+      </div>
+
+      <div 
+        class="description"
+        :class="{ 'dark-mode': dark.isActive }">
+        Yazılım geliştirmeyi ve tasarlamayı seven bir geliştiriciyim. Şu anda  
         <a
           href="https://www.eliar.com/"
           target="_blank"
           rel="noopener noreferrer"
-          :class="darkMode ? 'darkMode link' : 'link'"
-          >Eliar Electronic</a
-        >. I am also a fan of the world of computers and technology.
+          class="link"
+          :class="{ 'dark-mode': dark.isActive }"
+        >Eliar Elektronik</a> şirketinde çalışıyorum.  
+        Bilgisayarların ve teknolojinin büyüleyici dünyasına her zaman ilgi duydum.
       </div>
     </div>
   </div>
@@ -32,29 +57,61 @@ import { darkMode } from "../composable";
 <style lang="postcss" scoped>
 .home {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
+  transition: background-color 0.5s ease;
+
+  &.dark-mode {
+    background-color: #212121; 
+    transition: background-color 0.5s ease;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.name {
+  font-weight: bold;
 }
 
 .image {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 70px;
-  border: 20px solid rgb(220, 220, 220);
+  border: 20px solid rgba(220, 220, 220);
   border-radius: 50%;
+  transition: background-color 0.5s ease;
+
+  &.dark-mode {
+    border: 20px solid #2f2f2f;
+    transition: background-color 0.5s ease;
+
+    &:hover {
+      border: 20px solid #343434;
+      transition: background-color 0.5s ease;
+    }
+  }
 
   &:hover {
-    border: 20px solid rgb(210, 210, 210);
+    border: 20px solid rgba(210, 210, 210);
+    transition: background-color 0.5s ease;
   }
 }
 
 .text {
   width: 410px;
-  color: rgb(80, 80, 80);
+  margin: 50px;
+
+  &.dark-mode {
+    color: rgb(210, 210, 210);
+  } 
+
+  @media (max-width: 600px) {
+    width: 300px;
+  }
 }
 
 .rounded-image {
@@ -62,54 +119,112 @@ import { darkMode } from "../composable";
   height: 300px;
   border-radius: 50%;
   object-fit: cover;
+
+  @media (max-width: 600px) {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .title {
-  font-size: 50px;
+  font-size: 40px;
   color: rgb(80, 80, 80);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  
+  &.dark-mode {
+    color: rgb(210, 210, 210);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 32px;
+  }
 }
 
 .subtitle {
   font-size: 20px;
   color: rgb(80, 80, 80);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+
+  &.dark-mode {
+    color: rgb(180, 180, 180);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 }
 
 .description {
   font-size: 20px;
   padding-top: 20px;
   color: rgb(80, 80, 80);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+
+  &.dark-mode {
+    color: rgb(190, 190, 190);
+  }
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 }
 
 .link {
+  font-size: 20px;
+  padding-top: 20px;
   color: rgb(80, 80, 80);
-}
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
 
-.darkMode {
-  background-color: rgb(100, 100, 100);
-
-  .image {
-    border: 20px solid rgb(75, 75, 75);
-
-    &:hover {
-      border: 20px solid rgb(85, 85, 85);
-    }
+  &.dark-mode {
+    color: rgb(190, 190, 190);
   }
 
-  .title {
-    color: rgb(217, 217, 217);
-  }
-
-  .subtitle {
-    color: rgb(217, 217, 217);
-  }
-
-  .description {
-    color: rgb(217, 217, 217);
-  }
-
-  .link {
-    color: rgb(217, 217, 217);
+  @media (max-width: 600px) {
+    font-size: 14px;
   }
 }
 </style>
