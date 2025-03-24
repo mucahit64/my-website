@@ -12,7 +12,9 @@
   "dependencies": {
     "@quasar/extras": "^1.16.17",
     "@tailwindcss/postcss": "^4.0.2",
+    "@types/nodemailer": "^6.4.17",
     "are-we-there-yet": "^4.0.2",
+    "nodemailer": "^6.10.0",
     "nuxt": "^3.12.3",
     "nuxt-quasar-ui": "2.1.12",
     "postcss": "^8.5.1",
