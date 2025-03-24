@@ -1,6 +1,9 @@
+<script setup lang="ts">
+  const { dark } = useQuasar();
+  dark.set(true);
+</script>
 <template>
   <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <NuxtPage />
   </div>
 </template>
