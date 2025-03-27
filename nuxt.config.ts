@@ -6,4 +6,5 @@ export default defineNuxtConfig({
     "nuxt-quasar-ui",
     "@unocss/nuxt",
   ],
+  css: ["@/assets/global.css"],
 });

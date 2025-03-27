@@ -106,18 +106,7 @@ const resetText = () => {
   color: rgb(80, 80, 80);
   transition: color 0.3s ease;
   user-select: none;
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  font-family: var(--font-raleway-light);
 
   &.dark-mode {
     color: rgb(190, 190, 190);

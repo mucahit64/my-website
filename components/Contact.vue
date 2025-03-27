@@ -114,19 +114,6 @@ const sendEmail = async () => {
   font-size: 36px;
   padding-top: 20vh;
   color: rgb(80, 80, 80);
-  font-family:
-  system-ui,
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Roboto,
-  Oxygen,
-  Ubuntu,
-  Cantarell,
-  "Open Sans",
-  "Helvetica Neue",
-  Arial,
-  sans-serif;
 
   &.dark-mode {
     color: rgb(210, 210, 210);
@@ -175,18 +162,7 @@ const sendEmail = async () => {
   font-size: 24px;
   text-align: center;
   color: rgb(80, 80, 80);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  
 
   &.dark-mode {
     color: rgb(210, 210, 210);
@@ -201,18 +177,7 @@ label {
   margin-bottom: 5px;
   font-size: 16px;
   color: rgb(80, 80, 80);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  
 
   &.dark-mode {
     color: rgb(210, 210, 210);

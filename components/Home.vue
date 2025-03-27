@@ -28,7 +28,7 @@ const { dark } = useQuasar();
       <div 
         class="title"
         :class="{ 'dark-mode': dark.isActive }">
-          Selam, ben <span class="name">Mücahit</span>
+          Selam, ben <span>Mücahit</span>
       </div>
       
       <div
@@ -71,10 +71,6 @@ const { dark } = useQuasar();
   @media (max-width: 600px) {
     flex-direction: column;
   }
-}
-
-.name {
-  font-weight: bold;
 }
 
 .image {
@@ -127,21 +123,10 @@ const { dark } = useQuasar();
 }
 
 .title {
-  font-size: 40px;
+  font-size: 36px;
   color: rgb(80, 80, 80);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
-  
+  font-family: var(--font-primary);
+
   &.dark-mode {
     color: rgb(210, 210, 210);
   }
@@ -154,18 +139,8 @@ const { dark } = useQuasar();
 .subtitle {
   font-size: 20px;
   color: rgb(80, 80, 80);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  font-family: var(--font-primary);
+
 
   &.dark-mode {
     color: rgb(180, 180, 180);
@@ -180,18 +155,7 @@ const { dark } = useQuasar();
   font-size: 20px;
   padding-top: 20px;
   color: rgb(80, 80, 80);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+
 
   &.dark-mode {
     color: rgb(190, 190, 190);
@@ -206,18 +170,7 @@ const { dark } = useQuasar();
   font-size: 20px;
   padding-top: 20px;
   color: rgb(80, 80, 80);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  
 
   &.dark-mode {
     color: rgb(190, 190, 190);

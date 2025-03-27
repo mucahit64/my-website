@@ -61,18 +61,7 @@ const { dark } = useQuasar();
   font-size: 36px;
   padding-top: 20vh;
   color: rgb(80, 80, 80);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  
  
   &.dark-mode {
     color: rgb(210, 210, 210);
@@ -148,18 +137,7 @@ const { dark } = useQuasar();
 .project-title {
   font-size: 24px;
   color: rgb(80, 80, 80);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  
 
   &.dark-mode {
     color: rgb(190, 190, 190);
@@ -172,18 +150,7 @@ const { dark } = useQuasar();
 
 .project-description {
   font-size: 16px;
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  
   padding-top: 10px;
   color: rgb(80, 80, 80);
  
