@@ -1,9 +1,33 @@
 
 <script setup lang="ts">
 import profilePhoto from "../pictures/profile.jpeg";
+import profileMusic from "../sounds/sao-paulo.mp3";
 
 const { dark } = useQuasar();
 
+const isRotating = ref(false);
+const audioRef = ref<HTMLAudioElement | null>(null);
+
+  const startRotation = () => {
+  if (!audioRef.value) return;
+  
+  if (isRotating.value) {
+    isRotating.value = false;
+    audioRef.value.pause(); 
+    return;
+  }
+
+  isRotating.value = true;
+  audioRef.value.currentTime = 118;
+  audioRef.value
+    .play()
+    .catch((e) => console.error("Audio play error:", e)); 
+
+  setTimeout(() => {
+    isRotating.value = false;
+    audioRef.value?.pause();
+  }, 25000);
+};
 </script>
 
 <template>
@@ -14,11 +38,14 @@ const { dark } = useQuasar();
         alt="Example Image"
         class="rounded-image"
       /> -->
-      <img
+      <q-img
         :src="profilePhoto"
         alt="Example Image"
         class="rounded-image"
+        :class="{ 'rotate': isRotating }"
+        @click="startRotation"
       />
+      <audio ref="audioRef" preload="auto" :src="profileMusic"></audio>
     </div>
 
     <div 
@@ -94,6 +121,19 @@ const { dark } = useQuasar();
   &:hover {
     border: 20px solid rgba(210, 210, 210);
     transition: background-color 0.5s ease;
+  }
+}
+
+.rotate {
+  animation: spin 15s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
