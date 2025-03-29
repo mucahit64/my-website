@@ -18,7 +18,7 @@ const audioRef = ref<HTMLAudioElement | null>(null);
   }
 
   isRotating.value = true;
-  audioRef.value.currentTime = 118;
+  audioRef.value.currentTime = 124;
   audioRef.value
     .play()
     .catch((e) => console.error("Audio play error:", e)); 
@@ -26,7 +26,7 @@ const audioRef = ref<HTMLAudioElement | null>(null);
   setTimeout(() => {
     isRotating.value = false;
     audioRef.value?.pause();
-  }, 25000);
+  }, 20000);
 };
 </script>
 
@@ -55,7 +55,7 @@ const audioRef = ref<HTMLAudioElement | null>(null);
       <div 
         class="title"
         :class="{ 'dark-mode': dark.isActive }">
-          Selam, ben <span>Mücahit</span>
+          Selam, ben Mücahit
       </div>
       
       <div
@@ -81,7 +81,7 @@ const audioRef = ref<HTMLAudioElement | null>(null);
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .home {
   display: flex;
   justify-content: center;
@@ -125,7 +125,7 @@ const audioRef = ref<HTMLAudioElement | null>(null);
 }
 
 .rotate {
-  animation: spin 15s linear infinite;
+  animation: spin 20s linear infinite;
 }
 
 @keyframes spin {
@@ -166,6 +166,7 @@ const audioRef = ref<HTMLAudioElement | null>(null);
   font-size: 36px;
   color: rgb(80, 80, 80);
   font-family: var(--font-primary);
+  white-space: nowrap;
 
   &.dark-mode {
     color: rgb(210, 210, 210);

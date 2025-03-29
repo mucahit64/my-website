@@ -14,7 +14,8 @@ import Contact from "~/components/Contact.vue";
     <Projects />
     <Contact />
 
-    <!-- <img
+    <!--
+     <img
       class="full-height-image"
       src="https://colorlib.com/wp/wp-content/uploads/sites/2/leven-resume-website-template.jpg"
       alt="Example Image"
