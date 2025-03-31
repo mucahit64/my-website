@@ -12,21 +12,55 @@ const animateText = () => {
   animationTimeouts.forEach(clearTimeout);
   animationTimeouts = [];
 
-  for (let i = 1; i <= (name+surname).length; i++) {
+  const fullText = name + " " + surname;
+  
+  for (let i = 1; i <= fullText.length; i++) {
     const timeout = setTimeout(() => {
-      logoText.value = name.slice(0, i) + " " + surname.slice(0, i);
-    }, i * 20);
+      logoText.value = fullText.slice(0, i);
+    }, i * 30);
     animationTimeouts.push(timeout as unknown as number);
   }
+
+  // Belirli bir süre sonra ters animasyonu başlat
+  const reverseTimeout = setTimeout(reverseAnimateText, fullText.length * 20 + 1000);
+  animationTimeouts.push(reverseTimeout as unknown as number);
 };
 
-
-const resetText = () => {
+const reverseAnimateText = () => {
   animationTimeouts.forEach(clearTimeout);
-  logoText.value = shortText;
+  animationTimeouts = [];
+
+  let fullText = name + " " + surname;
+  let steps: string[] = [fullText];
+
+  // Belirli harfleri kaldırarak adım adım azalt
+  for (let i = fullText.length - 1; i > 0; i--) {
+    const { 0: n, 1: s } = fullText.split(" ");
+    console.log(n, s);
+    fullText = n.slice(0, i) + " " + s.slice(0, i);
+    steps.push(fullText);
+  }
+  steps.push(shortText);
+
+  // Animasyonu oluştur
+  steps.forEach((text, index) => {
+    const timeout = setTimeout(() => {
+      logoText.value = text;
+    }, index * 30);
+    animationTimeouts.push(timeout as unknown as number);});
 };
 
+onMounted(() => {
+  setTimeout(() => {
+    animateText();
+  }, 2000);
+});
+
+// window.addEventListener("scroll", () => {
+//   resetText();
+// });
 </script>
+
 <template>
   <div class="topbar" :class="{ 'dark-mode': dark.isActive }">
     <div class="logo">
@@ -39,10 +73,9 @@ const resetText = () => {
           class="logo-text"
           :class="{ 'dark-mode': dark.isActive }"
           @mouseover="animateText"
-          @mouseleave="resetText"
-          @click="scrollPage('section-1')"
+          @click="{ scrollPage('section-1'); }"
         >
-          {{ logoText }}
+          <span>{{ logoText }}</span>
         </div>
     </div>
     <div class="buttons" :class="{ 'dark-mode': dark.isActive }">
