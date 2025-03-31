@@ -7,4 +7,15 @@ export default defineNuxtConfig({
     "@unocss/nuxt",
   ],
   css: ["@/assets/global.css"],
+  app: {
+    head: {
+      link: [
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "/favicon-light.ico",
+        },
+      ],
+    }
+  }
 });

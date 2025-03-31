@@ -62,7 +62,6 @@ onUnmounted(() => {
         alt="Example Image"
         class="rounded-image"
         :class="{ 'rotate': isRotating }"
-        @click="toggleAudio"
       />
       <audio ref="audioRef" preload="auto" :src="profileMusic"></audio>
     </div>
