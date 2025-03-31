@@ -175,7 +175,7 @@ onMounted(() => {
   width: 120px;
   height: 100%;
   border: none;
-  font-size: 14px;
+  font-size: 12 px;
   font-weight: bold;
   background: none;
   cursor: pointer;

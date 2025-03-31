@@ -192,7 +192,7 @@ onUnmounted(() => {
   }
 
   @media (max-width: 600px) {
-    font-size: 32px;
+    font-size: 28px;
   }
 }
 
@@ -212,7 +212,7 @@ onUnmounted(() => {
 }
 
 .description {
-  font-size: 20px;
+  font-size: 16px;
   padding-top: 20px;
   color: rgb(80, 80, 80);
 
@@ -227,7 +227,7 @@ onUnmounted(() => {
 }
 
 .link {
-  font-size: 20px;
+  font-size: 16px;
   padding-top: 20px;
   color: rgb(80, 80, 80);
   
