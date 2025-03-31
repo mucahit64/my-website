@@ -100,7 +100,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .topbar {
   width: auto;
   height: 90px;
@@ -115,7 +115,7 @@ onMounted(() => {
   transition: background-color 0.3s ease;
   background-color: rgb(225, 225, 225);
   color: rgb(80, 80, 80);
-
+  z-index: 9999;
 
   &.dark-mode {
     background-color: #2e2e2e;
