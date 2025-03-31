@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   css: ["@/assets/global.css"],
   app: {
     head: {
+      title: "Mücahit Yaman",
       link: [
         {
           rel: "icon",
@@ -16,6 +17,6 @@ export default defineNuxtConfig({
           href: "/favicon-light.ico",
         },
       ],
-    }
+    },
   }
 });
