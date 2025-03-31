@@ -5,7 +5,7 @@ const { dark } = useQuasar();
 const name = ref('')
 const email = ref('')
 const message = ref('')
-const loading = ref(false)
+const loading = ref(true)
 const responseMessage = ref('')
 const success = ref(false)
 
@@ -62,6 +62,7 @@ const sendEmail = async () => {
             required
             outlined
             dense
+            :disable="loading"
           />
           <QInput
             class="pb-3"
@@ -71,6 +72,7 @@ const sendEmail = async () => {
             required
             outlined
             dense
+            :disable="loading"
           />
           <QInput
             class="pb-3"
@@ -82,8 +84,15 @@ const sendEmail = async () => {
             required
             outlined
             dense
+            :disable="loading"
           />
-          <QBtn type="submit" color="primary" :label="loading ? 'Gönderiliyor...' : 'Gönder'" no-caps class="form-button" :disable="loading"/>
+          <QBtn
+            type="submit"
+            color="red"
+            :label="loading ? 'Çok Yakında..  :(' : 'Gönderiliyor...'"
+            no-caps
+            class="form-button text-bold"
+            :disable="loading"/>
           <p v-if="responseMessage" class="pt-2 text-center" :class="success ? 'text-green-500' : 'text-red-500'">
             {{ responseMessage }}
           </p>
