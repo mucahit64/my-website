@@ -5,29 +5,48 @@ import profileMusic from "../sounds/sao-paulo.mp3";
 
 const { dark } = useQuasar();
 
-const isRotating = ref(false);
-const audioRef = ref<HTMLAudioElement | null>(null);
+const audio = ref<HTMLAudioElement | null>(null);
+const isPlaying = ref(false);
+const startTime = 124; // Şarkının başlamasını istediğiniz saniye
+const duration = 20; // Şarkının çalmasını istediğiniz süre
+let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-  const startRotation = () => {
-  if (!audioRef.value) return;
-  
-  if (isRotating.value) {
-    isRotating.value = false;
-    audioRef.value.pause(); 
-    return;
+const isRotating = computed(() => isPlaying.value);
+
+const toggleAudio = () => {
+  if (!audio.value) return;
+
+  if (isPlaying.value) {
+    audio.value.pause();
+    audio.value.currentTime = 0;
+    isPlaying.value = false;
+    if (timeoutId) clearTimeout(timeoutId);
+  } else {
+    audio.value.currentTime = startTime;
+    audio.value.play();
+    isPlaying.value = true;
+
+    timeoutId = setTimeout(() => {
+      if (audio.value) {
+        audio.value.pause();
+        audio.value.currentTime = 0;
+        isPlaying.value = false;
+      }
+    }, duration * 1000);
   }
-
-  isRotating.value = true;
-  audioRef.value.currentTime = 124;
-  audioRef.value
-    .play()
-    .catch((e) => console.error("Audio play error:", e)); 
-
-  setTimeout(() => {
-    isRotating.value = false;
-    audioRef.value?.pause();
-  }, 20000);
 };
+
+onMounted(() => {
+  audio.value = new Audio(profileMusic); // Şarkı dosyanızın yolu
+});
+
+onUnmounted(() => {
+  if (audio.value) {
+    audio.value.pause();
+    audio.value.currentTime = 0;
+  }
+  if (timeoutId) clearTimeout(timeoutId);
+});
 </script>
 
 <template>
@@ -43,7 +62,7 @@ const audioRef = ref<HTMLAudioElement | null>(null);
         alt="Example Image"
         class="rounded-image"
         :class="{ 'rotate': isRotating }"
-        @click="startRotation"
+        @click="toggleAudio"
       />
       <audio ref="audioRef" preload="auto" :src="profileMusic"></audio>
     </div>
@@ -67,15 +86,15 @@ const audioRef = ref<HTMLAudioElement | null>(null);
       <div 
         class="description"
         :class="{ 'dark-mode': dark.isActive }">
-        Yazılım geliştirmeyi ve tasarlamayı seven bir geliştiriciyim. Şu anda  
+        Bilgisayarların ve teknolojinin büyüleyici dünyasına her zaman ilgi duydum.
+        Bu web sitesinde projelerimi ve kendimle ilgili bilgileri bulabilirsiniz. Şu anda 
         <a
           href="https://www.eliar.com/"
           target="_blank"
           rel="noopener noreferrer"
           class="link"
           :class="{ 'dark-mode': dark.isActive }"
-        >Eliar Elektronik</a> şirketinde çalışıyorum.  
-        Bilgisayarların ve teknolojinin büyüleyici dünyasına her zaman ilgi duydum.
+        >Eliar Elektronik</a>'de yazılım geliştirici olarak çalışıyorum. 
       </div>
     </div>
   </div>
@@ -157,8 +176,8 @@ const audioRef = ref<HTMLAudioElement | null>(null);
   object-fit: cover;
 
   @media (max-width: 600px) {
-    width: 150px;
-    height: 150px;
+    width: 170px;
+    height: 170px;
   }
 }
 
